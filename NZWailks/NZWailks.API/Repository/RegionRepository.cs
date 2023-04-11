@@ -2,6 +2,7 @@
 using NZWailks.API.Data;
 using NZWailks.API.Models.Domain;
 
+
 namespace NZWailks.API.Repository
 {
 
@@ -17,6 +18,14 @@ namespace NZWailks.API.Repository
         public async Task<IEnumerable<Region>> GetAllAsync()
 		{
 			return await nZWailksDbContext.Regions.ToListAsync();
+		}
+
+		public async Task<Region> GetAsync(Guid id)
+		{
+
+			return await nZWailksDbContext.Regions.FirstOrDefaultAsync(x => x.Id == id);
+
+
 		}
 	}
 }

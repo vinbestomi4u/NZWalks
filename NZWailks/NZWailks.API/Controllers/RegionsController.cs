@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using NZWailks.API.Models.Domain;
 using NZWailks.API.Repository;
-using System.Runtime;
+
 
 namespace NZWailks.API.Controllers
 {
@@ -24,12 +24,12 @@ namespace NZWailks.API.Controllers
 		
 
 		[HttpGet]
-		public async Task<IActionResult> GetAllRegions()
+		public async Task<IActionResult> GetAllRegionsAsync()
 		{
 
 			var regions = await regionRepository.GetAllAsync();
 
-			//retuern DTO regions
+			      ////return DTO regions;****
 			//var regionsDTO = new List<Models.DTO.Region>();
 			//regions.ToList().ForEach(region =>
 			//{
@@ -47,13 +47,28 @@ namespace NZWailks.API.Controllers
 
 			//});
 
-			var regionDTO = mapper.Map<List<Models.DTO.Region>>(regions);
+			var regionsDTO = mapper.Map<List<Models.DTO.Region>>(regions);
 			
 
-			return Ok(regions);
+			return Ok(regionsDTO);
 
 			
 			
+		}
+
+		[HttpGet]
+		[Route("{guid:id}")]
+		public async Task<IActionResult> GetRegionAsync(Guid id)
+		{
+			var region = await regionRepository.GetAsync(id);
+			if (region == null)
+			{
+				return NotFound();
+			}
+
+			var regionDTO = mapper.Map<Models.DTO.Region>(region);
+
+			return Ok(regionDTO);
 		}
 
 

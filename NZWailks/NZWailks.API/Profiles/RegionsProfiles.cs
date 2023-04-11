@@ -10,7 +10,7 @@ namespace NZWailks.API.Profiles
         public RegionsProfiles()
         {
             CreateMap<Models.Domain.Region, Models.DTO.Region>()
-             // .ForMember(Dest => Dest.Id, options => options.MapFrom(src => src.Id)); 
+             //.ForMember(Dest => Dest.Id, options => options.MapFrom(src => src.Id)); 
              .ReverseMap();
         }
 

@@ -19,9 +19,14 @@ builder.Services.AddDbContext<NZWailksDbContext>(Options =>
 
 
 
+
 builder.Services.AddScoped<IRegionRepository, RegionRepository>();
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
+
+
+
 
 var app = builder.Build();
 
